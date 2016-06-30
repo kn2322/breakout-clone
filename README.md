@@ -1,2 +1,2 @@
 # breakout-clone
-A practice clone of breakout using Kivy and Python
+A practice clone of Breakout using Kivy and Python
