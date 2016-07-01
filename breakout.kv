@@ -1,0 +1,51 @@
+#:kivy 1.9.1
+
+<Ball>:
+    size: 10, 10
+    canvas:
+        Ellipse:
+            size: 15, 15
+            #Centers the larger ellipse onto the hitbox
+            pos: (a - 2.5 for a in self.pos)
+            
+<Paddle>:
+    size: 150, 10
+    canvas:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            
+<Brick>:
+    size: 80, 20
+    canvas:
+        Color:
+            rgb: root.color_code[root.lvl]
+        Rectangle:
+            #TODO: Figure out why self.size doesn't bind to brick size but defaults to 100
+            size: 80, 20
+            pos: self.pos
+            
+<Breakout>:
+    ball: ball
+    player: player
+    
+    Label:
+        pos: 0, root.height - 50
+        size: root.width, 50
+        text: 'Score: {}'.format(root.score)
+        font_size: 36
+        canvas.before: 
+        #Use this to actually give a background to the label widget, else it's just empty with text
+            Color:
+                rgba: 1, 1, 1, .5
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+    Paddle:
+        id: player
+        center: root.center_x, self.height / 2
+        
+    Ball:
+        id: ball
+        center: root.center_x, 200
